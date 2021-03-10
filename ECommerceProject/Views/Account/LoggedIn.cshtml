@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+<h2>LoggedIn</h2>
+
+<div class="row justify-content-md-start">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                @if (Session["FirstName"] != null)
+                {
+                    <br />
+                    <h3>Welcome @Session["FirstName"].ToString()</h3>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model ECommerceProject.Models.Store
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDetails.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDetails.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessCategory)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StoreId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
