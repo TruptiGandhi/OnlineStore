@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<ECommerceProject.Models.Cat>*@
+@model PagedList.IPagedList<ECommerceProject.Models.Cat>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add New Category", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Cats", FormMethod.Get))
+{
+    <p>
+        Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+        <input type="submit" value="Search" placeholder="search.." />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Sr. No.
+        </th>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { Sorting_Order = ViewBag.SortingName, Filter_Value = ViewBag.FilterValue })
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ImageURL)
+        </th>
+        <th>
+            Actions
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        int count = 1;
+        <tr>
+            <td>
+                @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="100" height="70" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CatId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CatId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CatId })
+            </td>
+        </tr>
+        @count = @count + 1;
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Page_No => Url.Action("Index",
+    new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))

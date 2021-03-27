@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ECommerceProject.Models.Cat>
+@{
+    ViewBag.Title = "ShowIndex";
+}
+
+<h2>Browse Category</h2>
+
+<p>
+    Select from @Model.Count()
+    Genres:
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(category.Name, "Browse", new { category = category.Name })
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

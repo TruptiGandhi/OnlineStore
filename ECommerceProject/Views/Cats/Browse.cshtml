@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ECommerceProject.Models.Product>
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>Browse</h2>
+
+
+<h1>Browse: @ViewBag.Name</h1>
+<div class="row ml-3">
+    @foreach (var item in Model)
+    {
+        if (item.CatId == ViewBag.id)
+        {
+            <div class="card ml-5 shadow-lg p-3 mb-5 bg-white rounded" style="        width: 18rem; margin-top: 10vh;">
+                @*<img src="~/Images/@item.itemURl" class="card-img-top" height="250" width="200" alt="...">*@
+                <div class="card-body">
+                    <h5 class="card-title">@item.ProductName</h5>
+                    <p class="card-text"><strong>Price: </strong>@item.SellingPrice</p>
+                    <a class="btn btn-warning" href="@Url.Action("ProductDetails","Cats",new { id = item.ProductId })">View Details</a>
+
+                </div>
+            </div>
+        }
+    }
+</div>
+<hr />
+<div class="mt-5">
+    <a href="@Url.Action("ShowIndex",new { category=ViewBag.Name})">Back to List</a>
+</div>

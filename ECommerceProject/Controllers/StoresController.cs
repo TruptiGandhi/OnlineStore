@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ECommerceProject.Models;
+using System.IO;
 
 namespace ECommerceProject.Controllers
 {
+    
     public class StoresController : Controller
     {
         private MyDBContext db = new MyDBContext();
@@ -41,18 +43,26 @@ namespace ECommerceProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StoreId,StoreName,URL,Address,LogoURL,BusinessCategory,User_Id")] Store store)
-        {
+        public ActionResult Create(Store store)
+        {  
             if (ModelState.IsValid)
             {
-                db.Stores.Add(store);
-                db.SaveChanges();
+                string fileName = Path.GetFileNameWithoutExtension(store.ImageFile.FileName);
+                string extension = Path.GetExtension(store.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                store.LogoURL = "../StoreImages/" + fileName;
+                fileName = Path.Combine(Server.MapPath("../StoreImages/"), fileName);
+                store.ImageFile.SaveAs(fileName);
+                    db.Stores.Add(store);
+                    db.SaveChanges();
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
 
             ViewBag.User_Id = new SelectList(db.UserDetails, "User_id", "FirstName", store.User_Id);
             return View(store);
         }
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -69,12 +79,19 @@ namespace ECommerceProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StoreId,StoreName,URL,Address,LogoURL,BusinessCategory,User_Id")] Store store)
+        public ActionResult Edit(Store store)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(store).State = EntityState.Modified;
-                db.SaveChanges();
+                string fileName = Path.GetFileNameWithoutExtension(store.ImageFile.FileName);
+                string extension = Path.GetExtension(store.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                store.LogoURL = "~/StoreEditedImages/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/StoreEditedImages/"), fileName);
+                store.ImageFile.SaveAs(fileName);
+                    db.Entry(store).State = EntityState.Modified;
+                    db.SaveChanges();
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
             ViewBag.User_Id = new SelectList(db.UserDetails, "User_id", "FirstName", store.User_Id);
@@ -104,6 +121,12 @@ namespace ECommerceProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        /*public ActionResult NewProduct(Store store)
+        {
+            ProductsController pc = new ProductsController();
+            return View();
+        }*/
 
         protected override void Dispose(bool disposing)
         {

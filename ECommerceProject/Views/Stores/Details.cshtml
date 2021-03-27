@@ -47,7 +47,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LogoURL)
+            @*<img src="@Html.DisplayFor(model => model.LogoURL)" width="100" height="70" />*@
+            <img src="@Url.Content(Model.LogoURL)" />
         </dd>
 
         <dt>

@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Stores", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -44,8 +44,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LogoURL, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LogoURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LogoURL, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.LogoURL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LogoURL, "", new { @class = "text-danger" })*@
+                <input type="file" id="ImageFile" name="ImageFile" />
             </div>
         </div>
 
@@ -67,7 +68,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Edit Store" class="btn btn-default" />
             </div>
         </div>
     </div>

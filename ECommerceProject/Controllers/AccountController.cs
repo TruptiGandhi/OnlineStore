@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ECommerceProject.Controllers
 {
+
     public class AccountController : Controller
     {
         
@@ -21,6 +22,11 @@ namespace ECommerceProject.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserDetails userDetails)
@@ -64,33 +70,20 @@ namespace ECommerceProject.Controllers
                             Session["Role"] = "Admin";
                             return RedirectToAction("AdminLoggedIn");
                         }
-                        return RedirectToAction("LoggedIn");
+                        return this.RedirectToAction("Index","Home");
                     }
                     else
                     {
-                        ViewBag.error = "Login failed";
-                        return RedirectToAction("Login");
+                        ModelState.AddModelError("", "Email or Password does not match.");
+                        //ViewBag.error = "Email or Password does not match";
+                        //return RedirectToAction("Login");
                     }
                 }
             }
                 return View();
         }
-        public ActionResult LoggedIn()
-        {
-            if (Session["User_id"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-        public ActionResult Logout()
-        {
-            Session.Clear();
-            return RedirectToAction("Login");
-        }
+      
+        
         public ActionResult AdminLoggedIn()
         {
             if (Session["User_id"] != null)

@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Catalogue";
+}
+
+<h2>Catalogue</h2>
+@Html.ActionLink("Add New Category", "Create", "Cats") | @Html.ActionLink("Add New Product", "Create", "Products")
+<br/>
+@Html.ActionLink("Categories", "ShowIndex", "Cats")
+<br />
+@Html.ActionLink("Products", "Index", "Products")
