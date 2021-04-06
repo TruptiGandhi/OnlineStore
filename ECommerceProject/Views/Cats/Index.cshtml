@@ -8,25 +8,20 @@
 }
 @using PagedList.Mvc;
 @using PagedList;
-
-<h2>Index</h2>
-
+<br/>
 <p>
     @Html.ActionLink("Add New Category", "Create")
 </p>
 
 @using (Html.BeginForm("Index", "Cats", FormMethod.Get))
 {
-    <p>
-        Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
-        <input type="submit" value="Search" placeholder="search.." />
-    </p>
+<h5>
+    Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+    <input type="submit" value="Search" placeholder="search.." />
+</h5>
 }
 <table class="table">
     <tr>
-        <th>
-            Sr. No.
-        </th>
         <th>
             @Html.ActionLink("First Name", "Index", new { Sorting_Order = ViewBag.SortingName, Filter_Value = ViewBag.FilterValue })
             @*@Html.DisplayNameFor(model => model.Name)*@
@@ -42,11 +37,9 @@
 
     @foreach (var item in Model)
     {
-        int count = 1;
+        
         <tr>
-            <td>
-                @count
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -59,7 +52,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.CatId })
             </td>
         </tr>
-        @count = @count + 1;
+        
     }
 
 </table>

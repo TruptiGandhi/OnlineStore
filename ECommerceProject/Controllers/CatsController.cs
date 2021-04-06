@@ -49,7 +49,7 @@ namespace ECommerceProject.Controllers
                     category = category.OrderBy(c => c.Name);
                     break;
             }
-            int Size_Of_Page = 4;
+            int Size_Of_Page = 3;
             int No_Of_Page = (Page_No ?? 1);
             return View(category.ToPagedList(No_Of_Page, Size_Of_Page));
             //return View(db.Cats.ToList());

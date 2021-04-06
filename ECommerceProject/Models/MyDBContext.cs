@@ -16,6 +16,8 @@ namespace ECommerceProject.Models
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Cat> Cats { get; set; }
+        public DbSet<ExtraCharge> extraCharges { get; set; }
+        public DbSet<Coupon> coupons { get; set; }
         public System.Data.Entity.DbSet<ECommerceProject.Models.Image> Images { get; set; }
     }
 }

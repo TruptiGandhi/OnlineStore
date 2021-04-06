@@ -10,112 +10,107 @@ using ECommerceProject.Models;
 
 namespace ECommerceProject.Controllers
 {
-    public class CategoriesController : Controller
+    public class ExtraChargesController : Controller
     {
         private MyDBContext db = new MyDBContext();
 
-        // GET: Categories
+        // GET: ExtraCharges
         public ActionResult Index()
         {
-            var categories = db.Categories.Include(c => c.Store);
-            return View(categories.ToList());
+            return View(db.extraCharges.ToList());
         }
 
-        // GET: Categories/Details/5
+        // GET: ExtraCharges/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            ExtraCharge extraCharge = db.extraCharges.Find(id);
+            if (extraCharge == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(extraCharge);
         }
 
-        // GET: Categories/Create
+        // GET: ExtraCharges/Create
         public ActionResult Create()
         {
-            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: ExtraCharges/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryId,CategoryName,StoreId")] Category category)
+        public ActionResult Create([Bind(Include = "EC_id,del_charge,free_delivery,GSTNumber,GSTPercentage,Chargename,chargeinrupees")] ExtraCharge extraCharge)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                db.extraCharges.Add(extraCharge);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", category.StoreId);
-            return View(category);
+            return View(extraCharge);
         }
 
-        // GET: Categories/Edit/5
+        // GET: ExtraCharges/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            ExtraCharge extraCharge = db.extraCharges.Find(id);
+            if (extraCharge == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", category.StoreId);
-            return View(category);
+            return View(extraCharge);
         }
 
-        // POST: Categories/Edit/5
+        // POST: ExtraCharges/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryId,CategoryName,StoreId")] Category category)
+        public ActionResult Edit([Bind(Include = "EC_id,del_charge,free_delivery,GSTNumber,GSTPercentage,Chargename,chargeinrupees")] ExtraCharge extraCharge)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(extraCharge).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", category.StoreId);
-            return View(category);
+            return View(extraCharge);
         }
 
-        // GET: Categories/Delete/5
+        // GET: ExtraCharges/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            ExtraCharge extraCharge = db.extraCharges.Find(id);
+            if (extraCharge == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(extraCharge);
         }
 
-        // POST: Categories/Delete/5
+        // POST: ExtraCharges/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            ExtraCharge extraCharge = db.extraCharges.Find(id);
+            db.extraCharges.Remove(extraCharge);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

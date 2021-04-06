@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ECommerceProject.Models.ExtraCharge>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Extra Charge", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.del_charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.free_delivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSTNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSTPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chargename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chargeinrupees)
+        </th>
+        <th>Actions</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.del_charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.free_delivery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSTNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSTPercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chargename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.chargeinrupees)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EC_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EC_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EC_id })
+        </td>
+    </tr>
+}
+
+</table>

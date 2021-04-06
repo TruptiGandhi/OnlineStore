@@ -157,13 +157,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CatsController.cs" />
+    <Compile Include="Controllers\CouponsController.cs" />
+    <Compile Include="Controllers\ExtraChargesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
-    <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,6 +176,7 @@
     <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DBmodel.cs" />
+    <Compile Include="Models\ExtraCharge.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\MarketingDesign.cs" />
     <Compile Include="Models\MyDBContext.cs" />
@@ -339,21 +339,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\AdminLoggedIn.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
-    <Content Include="Views\SubCategories\Create.cshtml" />
-    <Content Include="Views\SubCategories\Delete.cshtml" />
-    <Content Include="Views\SubCategories\Details.cshtml" />
-    <Content Include="Views\SubCategories\Edit.cshtml" />
-    <Content Include="Views\SubCategories\Index.cshtml" />
     <Content Include="Views\Cats\Create.cshtml" />
     <Content Include="Views\Cats\Delete.cshtml" />
     <Content Include="Views\Cats\Details.cshtml" />
@@ -368,6 +353,17 @@
     <Content Include="Views\Cats\ProductDetails.cshtml" />
     <Content Include="Views\Cats\ShowIndex.cshtml" />
     <Content Include="Views\Home\Catalogue.cshtml" />
+    <Content Include="Views\ExtraCharges\Create.cshtml" />
+    <Content Include="Views\ExtraCharges\Delete.cshtml" />
+    <Content Include="Views\ExtraCharges\Details.cshtml" />
+    <Content Include="Views\ExtraCharges\Edit.cshtml" />
+    <Content Include="Views\ExtraCharges\Index.cshtml" />
+    <Content Include="Views\Coupons\Create.cshtml" />
+    <Content Include="Views\Coupons\Delete.cshtml" />
+    <Content Include="Views\Coupons\Details.cshtml" />
+    <Content Include="Views\Coupons\Edit.cshtml" />
+    <Content Include="Views\Coupons\Index.cshtml" />
+    <Content Include="Views\Home\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

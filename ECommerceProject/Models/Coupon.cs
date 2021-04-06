@@ -10,7 +10,13 @@ namespace ECommerceProject.Models
     {
         [Key]
         public int CouponId { get; set; }
+
+        [Display(Name ="Coupon Code")]
+        [MinLength(5,ErrorMessage ="Minimum Length is 5 characters")]
         public string CouponCode { get; set; }
+
+        [Display(Name ="Uses per customer")]
+        
         public int UsesPerCustomer { get; set; }
         public int Discount_amount { get; set; }
         public int Min_OrderValue { get; set; }

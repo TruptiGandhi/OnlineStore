@@ -10,116 +10,112 @@ using ECommerceProject.Models;
 
 namespace ECommerceProject.Controllers
 {
-    public class SubCategoriesController : Controller
+    public class CouponsController : Controller
     {
         private MyDBContext db = new MyDBContext();
 
-        // GET: SubCategories
+        // GET: Coupons
         public ActionResult Index()
         {
-            var subCategories = db.SubCategories.Include(s => s.Category).Include(s => s.Image);
-            return View(subCategories.ToList());
+            var coupons = db.coupons.Include(c => c.Store);
+            return View(coupons.ToList());
         }
 
-        // GET: SubCategories/Details/5
+        // GET: Coupons/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategory subCategory = db.SubCategories.Find(id);
-            if (subCategory == null)
+            Coupon coupon = db.coupons.Find(id);
+            if (coupon == null)
             {
                 return HttpNotFound();
             }
-            return View(subCategory);
+            return View(coupon);
         }
 
-        // GET: SubCategories/Create
+        // GET: Coupons/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "ImageURL");
+            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName");
             return View();
         }
 
-        // POST: SubCategories/Create
+        // POST: Coupons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubCategory_id,SubCategoryName,IsCategoryAvailable,VisibilityType,CategoryId,ImageId")] SubCategory subCategory)
+        public ActionResult Create([Bind(Include = "CouponId,CouponCode,UsesPerCustomer,Discount_amount,Min_OrderValue,StoreId")] Coupon coupon)
         {
             if (ModelState.IsValid)
             {
-                db.SubCategories.Add(subCategory);
+                db.coupons.Add(coupon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", subCategory.CategoryId);
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "ImageURL", subCategory.ImageId);
-            return View(subCategory);
+            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", coupon.StoreId);
+            return View(coupon);
         }
 
-        // GET: SubCategories/Edit/5
+        // GET: Coupons/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategory subCategory = db.SubCategories.Find(id);
-            if (subCategory == null)
+            Coupon coupon = db.coupons.Find(id);
+            if (coupon == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", subCategory.CategoryId);
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "ImageURL", subCategory.ImageId);
-            return View(subCategory);
+            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", coupon.StoreId);
+            return View(coupon);
         }
 
-        // POST: SubCategories/Edit/5
+        // POST: Coupons/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubCategory_id,SubCategoryName,IsCategoryAvailable,VisibilityType,CategoryId,ImageId")] SubCategory subCategory)
+        public ActionResult Edit([Bind(Include = "CouponId,CouponCode,UsesPerCustomer,Discount_amount,Min_OrderValue,StoreId")] Coupon coupon)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subCategory).State = EntityState.Modified;
+                db.Entry(coupon).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", subCategory.CategoryId);
-            ViewBag.ImageId = new SelectList(db.Images, "ImageId", "ImageURL", subCategory.ImageId);
-            return View(subCategory);
+            ViewBag.StoreId = new SelectList(db.Stores, "StoreId", "StoreName", coupon.StoreId);
+            return View(coupon);
         }
 
-        // GET: SubCategories/Delete/5
+        // GET: Coupons/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategory subCategory = db.SubCategories.Find(id);
-            if (subCategory == null)
+            Coupon coupon = db.coupons.Find(id);
+            if (coupon == null)
             {
                 return HttpNotFound();
             }
-            return View(subCategory);
+            return View(coupon);
         }
 
-        // POST: SubCategories/Delete/5
+        // POST: Coupons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SubCategory subCategory = db.SubCategories.Find(id);
-            db.SubCategories.Remove(subCategory);
+            Coupon coupon = db.coupons.Find(id);
+            db.coupons.Remove(coupon);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

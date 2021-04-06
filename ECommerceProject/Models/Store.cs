@@ -12,13 +12,16 @@ namespace ECommerceProject.Models
         [Key]
         public int StoreId { get; set; }
 
+        [Display(Name ="Store Name")]
         [Required]
         public string StoreName { get; set; }
 
         [Required]
         public string URL { get; set; }
 
+        [Display(Name ="Store Address")]
         public string Address { get; set; }
+
         [Display(Name ="Store Logo")]
         public string LogoURL { get; set; }
 

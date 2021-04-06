@@ -51,7 +51,7 @@ namespace ECommerceProject.Controllers
                     pro = pro.OrderBy(c => c.ProductName);
                     break;
             }
-            int Size_Of_Page = 4;
+            int Size_Of_Page = 5;
             int No_Of_Page = (Page_No ?? 1);
             return View(pro.ToPagedList(No_Of_Page, Size_Of_Page));
         }
