@@ -3,9 +3,27 @@
     ViewBag.Title = "Catalogue";
 }
 
-<h2>Catalogue</h2>
-@Html.ActionLink("Add New Category", "Create", "Cats") 
-<br/>
-@Html.ActionLink("Browse Categories", "ShowIndex", "Cats")
-<br />
-@Html.ActionLink("Products", "Index", "Products")
+<h1>Catalogue</h1>
+<br/><br/>
+
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="card" style="width:150px; height:75px;">
+        <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-text"></p>
+            <a>@Html.ActionLink("Categories", "ShowIndex", "Cats")</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="card" style="width:150px; height:75px;">
+        <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-text"></p>
+            <a>@Html.ActionLink("Products", "Index", "Products")</a>
+        </div>
+    </div>
+</div>
+

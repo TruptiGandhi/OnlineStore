@@ -17,10 +17,10 @@ namespace ECommerceProject.Models
 
         [Required]
         [Display(Name = "Free delivery above")]
-        public int free_delivery { get; set; }
+        public int? free_delivery { get; set; }
 
         [Display(Name ="GST Number")]
-        public int GSTNumber {get;set;}
+        public int? GSTNumber {get;set;}
 
         [Display(Name ="GST Percentage")]
         [DisplayFormat(DataFormatString = "{0:P2}")]
@@ -31,6 +31,6 @@ namespace ECommerceProject.Models
         public string Chargename { get; set; }
 
         [Display(Name ="Charges in rupees")]
-        public int chargeinrupees { get; set; }
+        public int? chargeinrupees { get; set; }
     }
 }

@@ -3,8 +3,29 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>Manage</h2>
-
-@Html.ActionLink("Discount Coupons", "Create", "Coupons")
+<h1>Manage</h1>
 <br />
-@Html.ActionLink("Extra Charges", "Create", "ExtraCharges")
+<br />
+@*<img src="~/Images/@item.itemURl" class="card-img-top" height="250" width="200" alt="...">*@
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="card" style="width:155px; height:75px;">
+        <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-text"></p>
+            <a>@Html.ActionLink("Discount Coupons", "Create", "Coupons")</a>
+        </div>
+    </div>
+</div>
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12">
+    
+    <div class="card" style="width:150px; height:75px;">
+        
+        <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-text"></p>
+            <a>@Html.ActionLink("Extra Charges", "Create", "ExtraCharges")</a>
+        </div>
+    </div>
+</div>
+

@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h1>Add Category</h1>
 
 @using (Html.BeginForm("Create", "Cats", FormMethod.Post, new
 {
@@ -14,12 +14,12 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Cat</h4>
+
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
@@ -28,7 +28,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-6">
             @*@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })*@
             <input type="file" name="ImageFile" />
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add Category" class="btn btn-default" />
+            <input type="submit" value="Add Category" class="btn btn-primary" />
         </div>
     </div>
 </div>

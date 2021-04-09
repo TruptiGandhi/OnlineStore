@@ -10,20 +10,22 @@
 @using PagedList;
 <br/>
 <p>
-    @Html.ActionLink("Add New Category", "Create")
+    @Html.ActionLink("Add New Category", "Create","Cats", new { @class="btn btn-primary"})
 </p>
 
 @using (Html.BeginForm("Index", "Cats", FormMethod.Get))
 {
-<h5>
+<p>
+    <br/>
     Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
     <input type="submit" value="Search" placeholder="search.." />
-</h5>
-}
+    <br/>
+</p>
+}<br/>
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("First Name", "Index", new { Sorting_Order = ViewBag.SortingName, Filter_Value = ViewBag.FilterValue })
+            @Html.ActionLink("Category Name", "Index", new { Sorting_Order = ViewBag.SortingName, Filter_Value = ViewBag.FilterValue })
             @*@Html.DisplayNameFor(model => model.Name)*@
         </th>
         <th>

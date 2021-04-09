@@ -3,19 +3,13 @@
     ViewBag.Title = "ShowIndex";
 }
 
-<h2>Browse Category</h2>
+<h1>Categories (@Model.Count())</h1>
 
-<p>
-    Select from @Model.Count()
-    Genres:
-</p>
+@Html.ActionLink("Add New Category","Create","Cats", new {@class= "btn btn-primary", style = "text-align-last" })
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-
+        
             <th></th>
         </tr>
     </thead>

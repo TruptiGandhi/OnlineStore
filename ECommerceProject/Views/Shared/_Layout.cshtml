@@ -1,59 +1,259 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Online Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                   @* <li>@Html.ActionLink("Browse Categories", "ShowIndex", "Cats")</li>*@
-                    <li>@Html.ActionLink("Catalogue", "Catalogue", "Home")</li>
-                    <li>@Html.ActionLink("Manage", "Manage", "Home")</li>
-                </ul>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>eShop</title>
 
-                <ul class="nav navbar-nav navbar-right">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/regular.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/solid.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/svg-with-js.css" rel="stylesheet" />
+    <link href="~/AdminLTE/fontawesome-free/css/v4-shims.css" rel="stylesheet" />
+    <!-- Theme style -->
+
+
+    <link rel="icon" type="image/png" href="~/Content/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+
+
+
+    <link href="~/AdminLTE/dist/css/adminlte.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                &nbsp;&nbsp;<br />
+                <img src="~/AdminLTE/dist/img/eshop_logo.png" alt="eShop Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light col-lg-auto bootstrap-switch-label">&nbsp;E-SHOP</span>
+            </a>
+            <br />
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <!-- SidebarSearch Form -->
+              
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li class="nav-item">@Html.ActionLink("Catalogue", "Catalogue", "Home")</li>
+                        <li class="nav-item">@Html.ActionLink("Manage", "Manage", "Home")</li>
+                    </ul>
+
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         @if (Session["FirstName"] != null && Session["LastName"] != null)
                         {
-                            <li><p style="color:#fff;margin-top:15px;">Welcome @Session["FirstName"].ToString()  @Session["LastName"].ToString() </p></li>
-                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            <li class="nav-item"><p style="color:#fff;margin-top:15px;">Welcome @Session["FirstName"].ToString()  @Session["LastName"].ToString() </p></li>
+                            <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account")</li>
                         }
                         else
                         {
-                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                            <li class="nav-item">@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li class="nav-item">@Html.ActionLink("Login", "Login", "Account")</li>
 
                         }
                     </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
+
+
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+       
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <!-- Bootstrap 3.4.1 -->
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/AdminLTE/build/js/AdminLTE.js"></script>
+    <script src="~/AdminLTE/build/js/CardRefresh.js"></script>
+    <script src="~/AdminLTE/build/js/Layout.js"></script>
+    <script src="~/AdminLTE/build/js/NavbarSearch.js"></script>
+    <script src="~/AdminLTE/build/js/SidebarSearch.js"></script>
+    <script src="~/AdminLTE/build/js/ControlSidebar.js"></script>
+    <script src="~/AdminLTE/build/js/Fullscreen.js"></script>
+    <script src="~/AdminLTE/build/js/Toasts.js"></script>
+    <script src="~/AdminLTE/build/js/IFrame.js"></script>
+    <script src="~/AdminLTE/build/js/CardWidget.js"></script>
+    <link href="~/AdminLTE/build/scss/" rel="stylesheet" />
+    <link href="~/AdminLTE/build/scss/adminlte.scss" rel="stylesheet" />
+    <link href="~/AdminLTE/build/scss/_main-sidebar.scss" rel="stylesheet" />
+
+
+
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/main.js"></script>
+
+
+
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/dist/adminlte.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Online Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Catalogue", "Catalogue", "Home")</li>
+                        <li>@Html.ActionLink("Manage", "Manage", "Home")</li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                            @if (Session["FirstName"] != null && Session["LastName"] != null)
+                            {
+                                <li><p style="color:#fff;margin-top:15px;">Welcome @Session["FirstName"].ToString()  @Session["LastName"].ToString() </p></li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+
+                            }
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>
+*@

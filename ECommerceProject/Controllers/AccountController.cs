@@ -31,6 +31,11 @@ namespace ECommerceProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserDetails userDetails)
         {
+            if(userDetails.FirstName == userDetails.LastName)
+            {
+                ModelState.AddModelError("LastName",
+                                 "The last name cannot be the same as the first name.");
+            }
             if (ModelState.IsValid)
             {
                 using (MyDBContext db = new MyDBContext())
@@ -38,7 +43,6 @@ namespace ECommerceProject.Controllers
                     db.UserDetails.Add(userDetails);
                     db.SaveChanges();
                     ViewBag.Message = "Registered Successfully";
-                    //return RedirectToAction("Index");
                     return this.RedirectToAction("Create", "Stores");
                 }
             }

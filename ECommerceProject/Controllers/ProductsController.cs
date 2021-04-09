@@ -37,6 +37,8 @@ namespace ECommerceProject.Controllers
             }
 
             ViewBag.FilterValue = Search_Data;
+            //var store = from s in db.Stores select s;
+            //store = store.Where(s);
             var pro = from p in db.Products select p;
             if (!String.IsNullOrEmpty(Search_Data))
             {
@@ -79,51 +81,24 @@ namespace ECommerceProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,ProductName,Description,MRP,SellingPrice,Quantity,ProductVariant,IsProductAvailable,VisibilityType,ImageURL,CatId")]  Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                string extension = Path.GetExtension(product.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                product.ImageURL = "../ProductImages/" + fileName;
+                fileName = Path.Combine(Server.MapPath("../ProductImages/"), fileName);
+                product.ImageFile.SaveAs(fileName);
                 db.Products.Add(product);
                 db.SaveChanges();
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
             ViewBag.CatId = new SelectList(db.Cats, "CatId", "Name", product.CatId);
             return View(product);
-            /*if (ModelState.IsValid)
-            {
-                foreach (var file in files)
-                {
-                    if (file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/ProductImages/"), fileName);
-                        file.SaveAs(path);
-                    }
-                }
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            string fileName = Path.GetFileNameWithoutExtension(FileName);
-            string extension = Path.GetExtension(product.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            product.ImageURL = "../ProductImages/" + fileName;
-            fileName = Path.Combine(Server.MapPath("../ProductImages/"), fileName);
-            product.ImageFile.SaveAs(fileName);
-   
-                db.Products.Add(product);
-                db.SaveChanges();
-            
-            ModelState.Clear();
-            return RedirectToAction("Index");
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }*/
         }
-
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -142,12 +117,19 @@ namespace ECommerceProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,Description,MRP,SellingPrice,Quantity,ProductVariant,IsProductAvailable,VisibilityType,ImageURL,CatId")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                string extension = Path.GetExtension(product.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                product.ImageURL = "~/producteditedimages/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/producteditedimages/"), fileName);
+                product.ImageFile.SaveAs(fileName);
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
             ViewBag.CatId = new SelectList(db.Cats, "CatId", "Name", product.CatId);
